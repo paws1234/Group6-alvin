@@ -61,7 +61,7 @@ class ReservationHandler {
         }
     }
 
-    // Additional validation functions
+
     public function validateReservationDate($date) {
         $currentTimestamp = time();
         $reservationTimestamp = strtotime($date);

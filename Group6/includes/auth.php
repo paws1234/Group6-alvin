@@ -16,13 +16,13 @@ class UserAuthenticator {
             $userRole = $stmt->fetchColumn();
 
             if ($userRole === $role) {
-                return true; // The user is authorized with the specified role.
+                return true;
             }
 
-            return false; // The user is not authorized with the specified role.
+            return false; 
         } catch (PDOException $e) {
-            // Handle any database errors here.
-            return false; // By default, consider the user as not authorized on error.
+         
+            return false; 
         }
     }
     public function login($username, $password) {

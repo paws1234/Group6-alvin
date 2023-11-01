@@ -18,11 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $stmt->bindParam(':id', $reservation_id, PDO::PARAM_INT);
         
         if ($stmt->execute()) {
-            // Reservation deleted successfully
+       
             header("Location: admin.php");
             exit();
         } else {
-            // Error occurred while deleting the reservation
             echo "Failed to delete the reservation.";
         }
     } catch (PDOException $e) {

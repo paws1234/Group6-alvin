@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/cf223ee5eb.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="icon" href="images/ctu.png" type="image/x-icon">
+    <link rel="icon" href="images/ctu5.png" type="image/x-icon">
     <!-- meta tag that disables caching for the page it is included on and it prevents the browser from storing a local copy. 
     This causes the browser to fetch a fresh copy of the page from the server each time the user visits. -->
     <meta http-equiv="Cache-control" content="no-cache">
@@ -41,7 +41,7 @@
                             class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="images/ctu5.jpg"
+                        <img src="images/ctu6.jpg"
                             class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
@@ -79,16 +79,16 @@
                     unset($_SESSION['login_error']);
                 }
                 ?>
-                <div class="modal-body">
-                    <form method="post" action="process_login.php">
-                        <div class="mb-3">
-                            <label for="username" class="col-form-label">Username:</label>
-                            <input type="text" name="username" class="form-control" id="username" required autocomplete="on">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="col-form-label">Password:</label>
-                            <input type="password" name="password" class="form-control" id="password" required>
-                        </div>
+               <div class="modal-body">
+            <form method="post" action="process_login.php">
+                <div class="mb-3">
+                    <label for="login-username" class="col-form-label">Username:</label>
+                    <input type="text" name="username" class="form-control" id="login-username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="login-password" class="col-form-label">Password:</label>
+                    <input type="password" name="password" class="form-control" id="login-password" required>
+                </div>
                         <script>
                             console.log("User Role: <?php echo isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'Unknown'; ?>");
                         </script>
@@ -117,7 +117,7 @@
                 }
                 ?>
                 <div class="modal-body">
-                    <form method="post" action="process-registration.php">
+                    <form method="post" action="process_registration.php">
                         <div class="mb-3">
                             <label for="username" class="col-form-label">Username:</label>
                             <input type="text" class="form-control" id="username" name="username" required>

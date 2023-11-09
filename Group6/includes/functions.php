@@ -37,7 +37,7 @@ class ReservationValidator {
 
 $reservationValidator = new ReservationValidator($conn);
 $dateToCheck = '2023-10-31';
-$computerCount = 5;
+$computerCount = 1;
 
 if ($reservationValidator->validateReservationDate($dateToCheck)) {
     if ($reservationValidator->isLabAvailable($dateToCheck, $computerCount)) {
@@ -45,7 +45,5 @@ if ($reservationValidator->validateReservationDate($dateToCheck)) {
     } else {
         echo "The lab is not available on this date.";
     }
-} else {
-    echo "Invalid reservation date.";
-}
+} 
 ?>

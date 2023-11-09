@@ -20,9 +20,9 @@ class ReservationHandler {
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $date = $_POST['date'];
-            $computer_count = $_POST['computer_count'];
-            $purpose = $_POST['purpose'];
+            $date = htmlspecialchars($_POST['date'], ENT_QUOTES, 'UTF-8');
+            $computer_count = htmlspecialchars($_POST['computer_count'], ENT_QUOTES, 'UTF-8');
+            $purpose = htmlspecialchars($_POST['purpose'], ENT_QUOTES, 'UTF-8');
             $userID = $this->userAuthenticator->getUserId();
 
             if (!$this->userAuthenticator->isUserAuthorized($userID, 'user')) {
@@ -61,7 +61,6 @@ class ReservationHandler {
         }
     }
 
-
     public function validateReservationDate($date) {
         $currentTimestamp = time();
         $reservationTimestamp = strtotime($date);
@@ -83,7 +82,6 @@ class ReservationHandler {
 
         return ($totalReserved + $computerCount) <= $maxLabCapacity;
     }
-
 }
 
 $userAuthenticator = new UserAuthenticator($conn);

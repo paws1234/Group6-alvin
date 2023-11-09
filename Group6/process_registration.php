@@ -20,8 +20,26 @@ class UserRegistration {
         );
     }
 
+    private function validateInput($input) {
+        return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+    }
+
+    private function isValidUsername($username) {
+        // Implement additional validation if needed (e.g., length, allowed characters)
+        return preg_match("/^[a-zA-Z0-9_]+$/", $username);
+    }
+
+    private function isValidPassword($password) {
+        // Implement additional validation if needed (e.g., minimum length)
+        return strlen($password) >= 8;
+    }
+
     public function registerUser($username, $password, $confirmPassword) {
-        if (preg_match("/^[a-zA-Z0-9_]+$/", $username) && strlen($password) >= 8 && $password === $confirmPassword) {
+        $username = $this->validateInput($username);
+        $password = $this->validateInput($password);
+        $confirmPassword = $this->validateInput($confirmPassword);
+
+        if ($this->isValidUsername($username) && $this->isValidPassword($password) && $password === $confirmPassword) {
             if (extension_loaded('sodium')) {
                 $salt = random_bytes(SODIUM_CRYPTO_PWHASH_SALTBYTES);
                 $opsLimit = defined('SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE') ? SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE : SODIUM_CRYPTO_PWHASH_OPSLIMIT_INTERACTIVE;
@@ -37,9 +55,10 @@ class UserRegistration {
                         $stmt = $this->conn->prepare($query);
                         $stmt->execute([$username, $hashedPassword]);
                         session_regenerate_id(true);
-                        header("Location: login.php");
+                        header("Location: index.php");
                         exit();
                     } catch (PDOException $e) {
+                        error_log("Database Error: " . $e->getMessage());
                         echo "Registration failed. Please try again.";
                     }
                 } else {
@@ -50,7 +69,7 @@ class UserRegistration {
             }
         } else {
             $_SESSION['registration_error'] = "Invalid username or password for registration. Username should only contain alphanumeric characters and underscore, and the password should be at least 8 characters long and match the confirmation password.";
-            header("Location: registration.php");
+            header("Location: index.php");
             exit();
         }
     }

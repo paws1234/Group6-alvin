@@ -61,48 +61,53 @@ $reservations = $adminDashboard->getReservations();
 
 function admindashboard($reservations, $csrfToken) {
     ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="icon" href="images/ctu.png" type="image/x-icon">
 </head>
 
 <body class="bg-gray-100 font-sans">
+
     <div class="bg-blue-600 p-4 text-white text-center">
         <h1 class="text-4xl sm:text-6xl md:text-6xl">Admin Dashboard</h1>
     </div>
 
-    <div class="container mx-auto mt-8 r">
-    <h2 class="text-2xl sm:text-4xl mb-4">Reservations</h2>
-    <form method="post" action="" class="text-right mb-4">
-        <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
-        <button type="submit" name="logout" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 sm:py-4 px-2 sm:px-4 rounded">Logout</button>
-            </form>
-          </div>
+    <div class="container mx-auto mt-8">
+        <h2 class="text-2xl sm:text-4xl mb-4">Reservations</h2>
+        <form method="post" action="" class="text-right mb-4">
+            <input type="hidden" name="csrf_token" value="<?= $csrfToken ?>">
+            <button type="submit" name="logout" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 sm:py-4 px-2 sm:px-4 rounded">Logout</button>
+        </form>
+    </div>
 
-        <div class="bg-white rounded shadow-md p-4 sm:p-8 overflow-x-auto">
+    <div class="bg-white rounded shadow-md p-4 sm:p-8 overflow-x-auto container mx-auto mt-4">
+        <div class="w-full overflow-x-auto">
             <table class="w-full table-auto border border-gray-300 text-sm sm:text-lg">
                 <thead>
                     <tr>
-                        <th class="px-4 py-2 bg-blue-500 text-white border hidden sm:table-cell text-base sm:text-lg md:text-lg">Date</th>
-                        <th class="px-4 py-2 bg-blue-500 text-white border text-base sm:text-lg md:text-lg">User</th>
-                        <th class="px-4 py-2 bg-blue-500 text-white border hidden sm:table-cell text-base sm:text-lg md:text-lg">Computer Count</th>
-                        <th class="px-4 py-2 bg-blue-500 text-white border hidden sm:table-cell text-base sm:text-lg md:text-lg">Purpose</th>
-                        <th class="px-4 py-2 bg-blue-500 text-white border text-base sm:text-lg md:text-lg">Status</th>
-                        <th class="px-4 py-2 bg-blue-500 text-white border text-base sm:text-lg md:text-lg">Action</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border hidden md:table-cell">Date</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border">User</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border hidden md:table-cell">Computer Count</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border hidden md:table-cell">Purpose</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border">Status</th>
+                        <th class="px-4 py-2 bg-blue-500 text-white border">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($reservations as $row) { ?>
                         <tr>
-                            <td class="px-4 py-2 border hidden sm:table-cell text-base sm:text-lg md:text-lg"><?= htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="px-4 py-2 border text-base sm:text-lg md:text-lg"><?= htmlspecialchars($row['user'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="px-4 py-2 border hidden sm:table-cell text-base sm:text-lg md:text-lg"><?= htmlspecialchars($row['computer_count'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="px-4 py-2 border hidden sm:table-cell text-base sm:text-lg md:text-lg"><?= htmlspecialchars($row['purpose'], ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="px-4 py-2 border text-base sm:text-lg md:text-lg <?= $row['status'] === 'approved' ? 'text-green-500' : ($row['status'] === 'pending' ? 'text-blue-500' : 'text-red-500') ?>">
+                            <td class="px-4 py-2 border hidden md:table-cell"><?= htmlspecialchars($row['date'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td class="px-4 py-2 border"><?= htmlspecialchars($row['user'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td class="px-4 py-2 border hidden md:table-cell"><?= htmlspecialchars($row['computer_count'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td class="px-4 py-2 border hidden md:table-cell"><?= htmlspecialchars($row['purpose'], ENT_QUOTES, 'UTF-8') ?></td>
+                            <td class="px-4 py-2 border <?= $row['status'] === 'approved' ? 'text-green-500' : ($row['status'] === 'pending' ? 'text-blue-500' : 'text-red-500') ?>">
                                 <?= htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') ?>
                             </td>
                             <td class="px-4 py-2 border">
@@ -119,6 +124,9 @@ function admindashboard($reservations, $csrfToken) {
 </body>
 
 </html>
+
+
+
 <?php
 }
 

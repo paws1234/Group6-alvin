@@ -25,12 +25,12 @@ class UserRegistration {
     }
 
     private function isValidUsername($username) {
-        // Implement additional validation if needed (e.g., length, allowed characters)
+       
         return preg_match("/^[a-zA-Z0-9_]+$/", $username);
     }
 
     private function isValidPassword($password) {
-        // Implement additional validation if needed (e.g., minimum length)
+    
         return strlen($password) >= 8;
     }
 
@@ -85,3 +85,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userRegistration->registerUser($username, $password, $confirmPassword);
 }
 ?>
+

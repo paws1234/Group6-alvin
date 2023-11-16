@@ -95,42 +95,41 @@
         </div>
     </div>
     <!------------------------------------ Register Modal ------------------------------------>
-<div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="login-modalLabel" aria-hidden="true">        <div class="modal-dialog modal-dialog-centered" style="max-width=80%;">
-            <div class="modal-content primary">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">Register</h1>
-                    <i class="fa-sharp fa-solid fa-xmark" data-bs-dismiss="modal" aria-label="Close"></i>
-                </div>
-                <?php
-                if (isset($_SESSION['registration_error'])) {
-                    echo '<div class="error-message">' . htmlspecialchars($_SESSION['registration_error'], ENT_QUOTES, 'UTF-8') . '</div>';
-                    unset($_SESSION['registration_error']);
-                }
-                ?>
-                <div class="modal-body">
-                    <form method="post" action="process_registration.php">
-        <div class="mb-3">
-            <label for="username" class="col-form-label">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" required maxlength="12">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="col-form-label">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" required maxlength="15">
-        </div>
-        <div class="mb-3">
-            <label for="confirm_password" class="col-form-label">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required maxlength="15">
-        </div>
-                        <div class="d-flex flex-column text-center align-items-center justify-content-center">
-                            </button>
-                            <input type="submit" class="login-submit btn btn-primary" value="Register">
-                        </div>
-                    </form>
-                </div>
+<div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="login-modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="max-width=80%;">
+        <div class="modal-content primary">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Register</h1>
+                <i class="fa-sharp fa-solid fa-xmark" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <?php
+            if (isset($_SESSION['registration_error'])) {
+                echo '<div class="error-message">' . htmlspecialchars($_SESSION['registration_error'], ENT_QUOTES, 'UTF-8') . '</div>';
+                unset($_SESSION['registration_error']);
+            }
+            ?>
+            <div class="modal-body">
+                <form method="post" action="process_registration.php">
+                    <div class="mb-3">
+                        <label for="username" class="col-form-label">Username:</label>
+                        <input type="text" class="form-control" id="username" name="username" required maxlength="12">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="col-form-label">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required pattern=".{8,}" title="Password must be 8 characters or more" maxlength="15">
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="col-form-label">Confirm Password:</label>
+                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required maxlength="15">
+                    </div>
+                    <div class="d-flex flex-column text-center align-items-center justify-content-center">
+                        <input type="submit" class="login-submit btn btn-primary" value="Register">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 </body>
 
 </html>
-
